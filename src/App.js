@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import './app.scss';
-import {secret_ID, domain} from './utils';
+import {secret_ID, domain, xyz, popularGamesURL} from './utils';
 import jwt from 'jsonwebtoken';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {userAdded, userRemoved} from './global_store/userReducer';
+import {useDispatch, useSelector} from 'react-redux';
+
+
 
 export default function App(){
 
-    const [user, setUser] = useState();
+    const user = useSelector(state=>state.user);
+    console.log(user);
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
     
     useEffect(()=>{
         checkForKey();
@@ -15,27 +23,44 @@ export default function App(){
 
     async function checkForKey(){
         const oldKey = localStorage.getItem('auth_token');
-        const userOld = jwt.decode(oldKey)
-        if(Date.now() > userOld.exp){
-            const loggedInUser = await axios.get(domain+"/user/"+userOld.userId);
-            console.log(loggedInUser);
-            const {name,email,profilePic} = loggedInUser.data;
-            setUser({
-                name,
-                email,
-                profilePic
-            }) 
-
+        // const userOld = jwt.decode(oldKey)
+        async function testKey (){
+            try{
+                const auth = jwt.verify(oldKey, xyz); 
+                const loggedInUser = await axios.get(domain+"/user/"+auth.userId);
+                const {name,email,profilePic} = loggedInUser.data;
+                dispatch(userAdded({
+                    id:auth.userId,
+                    name,
+                    profilePic
+                }))
+                // setUser({
+                //     name,
+                //     email,
+                //     profilePic
+                // });
+                
+                setLoading(false); 
+                //console.log(popularGamesURL());
+            }
+            catch(err){
+                // console.log("Error",err);
+                // console.log("Else was executed");
+                // console.log(typeOf(Date.now()));
+                dispatch(userRemoved());
+                setLoading(false);
+            }
         }
-
+        testKey();
     }
 
     function logOut(){
         localStorage.removeItem('auth_token');
-        setUser();
+        dispatch(userRemoved());
     }
 
     const googleSuccess = async(res)=>{
+        setLoading(true);
         const token=res.tokenObj.id_token;
         const authAxios = axios.create({
             baseURL:domain+"/user",
@@ -46,19 +71,22 @@ export default function App(){
         )
         const getUser= await authAxios.get("/signin");
         localStorage.setItem('auth_token',getUser.data.authToken);
-        console.log(getUser.data.user);
-        setUser(getUser.data.user);
+        // console.log(getUser.data.user);
+        checkForKey();        
+        setLoading(false);
 
     }
 
     const googleFailure = (error) =>{
         console.log("Google Login Failed", error);
+        setLoading(false);
     }
 
 return(
     
     <div className="main-screen">
-        {!user && <div className="signing">
+        {loading && <CircularProgress color="secondary" />}
+        {user.auth===false && <div className="signing">
             <GoogleLogin
                 clientId={secret_ID}
 
@@ -68,7 +96,7 @@ return(
                 cookiePolicy={'single_host_origin'}
                 />
         </div>}
-        {user? <div className="user">Hi!! {user.name}<img src={user.profilePic} alt="profile"/><button onClick={logOut}>Log Out</button></div>:<h1>you are not logged in</h1>}
+        {user.id? <div className="user">Hi!! {user?.name}<img src={user?.profilePic} alt="profile"/><button onClick={logOut}>Log Out</button></div>:<h1>you are not logged in</h1>}
     </div>
     )
 }
