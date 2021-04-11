@@ -1,0 +1,44 @@
+.nav-bar{
+    background: rgb(231, 209, 194);
+    padding: 15px;
+    
+    .first{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid black;
+        .logo{
+            a{
+                text-decoration: none;
+            }
+            
+        }
+        .nav-links{
+            #profile{
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        
+    }
+
+    .second{
+        border: 2px solid green;
+        display: flex;
+        justify-content: space-around;
+        .nav-links{
+            padding: 15px;
+            a {
+                margin-left: 25px;
+                padding: 10px;
+                text-decoration: none;
+                transition: 0.5s ease-in-out;
+                &:hover{
+                    background: rgba(128, 255, 0, 0.541);
+                }
+            }
+        }
+    }
+}

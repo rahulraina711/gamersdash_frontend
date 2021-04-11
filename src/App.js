@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import './app.scss';
-import {secret_ID, domain, xyz, popularGamesURL} from './utils';
+import {secret_ID, domain, xyz} from './utils';
 import jwt from 'jsonwebtoken';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {userAdded, userRemoved} from './global_store/userReducer';
 import {useDispatch, useSelector} from 'react-redux';
+//import ViewGame from './Components/GamesSection/ViewGames';
+import {useHistory} from 'react-router-dom';
 
 
 
@@ -16,6 +18,7 @@ export default function App(){
     console.log(user);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+    const history = useHistory();
     
     useEffect(()=>{
         checkForKey();
@@ -41,10 +44,12 @@ export default function App(){
                 // });
                 
                 setLoading(false); 
-                //console.log(popularGamesURL());
+                // console.log(popularGamesURL());
+                history.push("/games");
+                
             }
             catch(err){
-                // console.log("Error",err);
+                 console.log("Error",err);
                 // console.log("Else was executed");
                 // console.log(typeOf(Date.now()));
                 dispatch(userRemoved());
@@ -52,11 +57,6 @@ export default function App(){
             }
         }
         testKey();
-    }
-
-    function logOut(){
-        localStorage.removeItem('auth_token');
-        dispatch(userRemoved());
     }
 
     const googleSuccess = async(res)=>{
@@ -89,14 +89,13 @@ return(
         {user.auth===false && <div className="signing">
             <GoogleLogin
                 clientId={secret_ID}
-
                 buttonText="Hop In"
                 onSuccess={googleSuccess}
                 onFailure={googleFailure}
                 cookiePolicy={'single_host_origin'}
                 />
         </div>}
-        {user.id? <div className="user">Hi!! {user?.name}<img src={user?.profilePic} alt="profile"/><button onClick={logOut}>Log Out</button></div>:<h1>you are not logged in</h1>}
+        {user.id? <h1>hello</h1>:<h1>you are not logged in</h1>}
     </div>
     )
 }

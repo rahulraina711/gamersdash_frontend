@@ -1,0 +1,13 @@
+.games-parent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .games-display-area{
+        padding: 3px;
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: 310px 310px 310px 310px 310px ;
+        gap: 3px 10px;
+    }
+}
