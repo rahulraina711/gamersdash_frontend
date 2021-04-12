@@ -3,7 +3,7 @@ export const secret_ID = "770137991345-qd5ralem02mqmmekkukfqp4nnhrc47v3.apps.goo
 export const xyz = "iajbfakncaicubackajbcahcvisrjngf74t509rwijf2398u329h9v398h3298j";
 
 const BASE_URL = "https://api.rawg.io/api";
-const API = "30adeac360134ff987ca67c2c32de0ea";
+const API = "871b8db4c8c14c308a2a68ddd8621fad";
 
 //dates
 const getCurrentMonth = () => {

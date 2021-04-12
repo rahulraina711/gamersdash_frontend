@@ -1,11 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-image: radial-gradient(78.1% 78.1% at 50% 21.9%, rgba(15, 17, 20, 0) 0%, rgb(15, 17, 20) 100%), url("https://d273822p0momvo.cloudfront.net/eyJidWNrZXQiOiJ3YXZlZGFzaC13ZWJzaXRlLWltYWdlcyIsImtleSI6ImltYWdlcy91aS1hc3NldHMvY292ZXIucG5nIiwiZWRpdHMiOnsianBlZyI6eyJxdWFsaXR5Ijo5MH0sInJlc2l6ZSI6eyJ3aWR0aCI6MTkyMCwiaGVpZ2h0IjoxMDgwLCJ3aXRob3V0RW5sYXJnZW1lbnQiOmZhbHNlfX19");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 .main-screen{
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    background: transparent;
 
     .user{
+        background: transparent;
         margin-top: 25px;
         display: flex;
         flex-direction: column;

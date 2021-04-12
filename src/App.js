@@ -7,7 +7,6 @@ import jwt from 'jsonwebtoken';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {userAdded, userRemoved} from './global_store/userReducer';
 import {useDispatch, useSelector} from 'react-redux';
-//import ViewGame from './Components/GamesSection/ViewGames';
 import {useHistory} from 'react-router-dom';
 
 

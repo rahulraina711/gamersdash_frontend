@@ -3,15 +3,18 @@ import {Route, BrowserRouter, Switch, useParams} from 'react-router-dom';
 import Navbar from './Components/NavBar/NavBar';
 import App from './App';
 import ViewGame from './Components/GamesSection/ViewGames';
+import Social from './Components/SocialMedia/Social';
+import Store from './Components/Store/Store';
+import GameDetails from './Components/GamesSection/Component/GameDetails';
 
 function Router(){
 
-    // function Child (){
-    //     let {id} = useParams();
-    //     return(
-    //         <MovieDetails id={id} />
-    //     )
-    // }
+    function Child (){
+        let {id} = useParams();
+        return(
+            <GameDetails id={id} />
+        )
+    }
 
     // function SearchChild (){
     //     let{id} = useParams();
@@ -29,6 +32,11 @@ function Router(){
                     <Route exact path="/"><App /></Route>
                     
                     <Route path="/games"><ViewGame /></Route>
+                    <Route path="/gamedetails/:id" children={<Child/>}></Route>
+
+                    <Route path="/social"><Social/></Route>
+                    <Route path="/store"><Store/></Route>
+
                     
                 </Switch>
         </BrowserRouter>

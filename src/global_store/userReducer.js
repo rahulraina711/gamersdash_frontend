@@ -2,10 +2,13 @@ import {createAction, createReducer} from '@reduxjs/toolkit';
 
 export const userAdded = createAction("userAdded");
 export const userRemoved = createAction("userRemoved");
+export const pageChanged = createAction("pageChanged");
 
 const initState = {
     user :{
-        auth: false
+        auth: false,
+        cart: [],
+        currentPage:"social"
     }
 }
 

@@ -1,4 +1,5 @@
 .games-parent{
+    background:transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +9,6 @@
         display: grid;
         margin: 0 auto;
         grid-template-columns: 310px 310px 310px 310px 310px ;
-        gap: 3px 10px;
+        gap: 10px 10px;
     }
 }
