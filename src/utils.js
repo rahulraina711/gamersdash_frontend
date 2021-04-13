@@ -1,5 +1,6 @@
 export const domain = "http://localhost:3100";
 export const secret_ID = "770137991345-qd5ralem02mqmmekkukfqp4nnhrc47v3.apps.googleusercontent.com";
+export const api_key_calender = "AIzaSyAupx-L18yrgyMlOxKegcUOIVaRwQgTmrg"
 export const xyz = "iajbfakncaicubackajbcahcvisrjngf74t509rwijf2398u329h9v398h3298j";
 
 const BASE_URL = "https://api.rawg.io/api";
