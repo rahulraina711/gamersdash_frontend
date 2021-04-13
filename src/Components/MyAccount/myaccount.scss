@@ -1,0 +1,31 @@
+.main-view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img{
+
+        }
+        .profile-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .user-name{
+
+            }
+            .user-about{
+
+            }
+            .user-occupation{
+                
+            }
+
+        }
+    }
+}

@@ -42,6 +42,10 @@ function Navbar(){
         setStore(false);
     };
 
+    function myAccount(){
+        history.push("/user/"+user.id);
+    }
+
     return(
         <>
         
@@ -61,7 +65,7 @@ function Navbar(){
                   onClose={handleClose}
                 >
                     <label style={{padding:15}}>Hello {user?.name}</label>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={myAccount}>My account</MenuItem>
                     <MenuItem onClick={()=>{handleClose();logout()}}>Logout</MenuItem>
                 </Menu>
             </div>

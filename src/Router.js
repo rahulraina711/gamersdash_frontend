@@ -6,6 +6,7 @@ import ViewGame from './Components/GamesSection/ViewGames';
 import Social from './Components/SocialMedia/Social';
 import Store from './Components/Store/Store';
 import GameDetails from './Components/GamesSection/Component/GameDetails';
+import MyAccount from './Components/MyAccount/MyAccount';
 
 function Router(){
 
@@ -13,6 +14,13 @@ function Router(){
         let {id} = useParams();
         return(
             <GameDetails id={id} />
+        )
+    }
+
+    function UserChild (){
+        let {id} = useParams();
+        return(
+            <MyAccount id={id} />
         )
     }
 
@@ -36,6 +44,8 @@ function Router(){
 
                     <Route path="/social"><Social/></Route>
                     <Route path="/store"><Store/></Route>
+                    <Route path="/user/:id" children={<UserChild/>}></Route>
+
 
                     
                 </Switch>

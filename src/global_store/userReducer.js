@@ -7,8 +7,7 @@ export const pageChanged = createAction("pageChanged");
 const initState = {
     user :{
         auth: false,
-        cart: [],
-        currentPage:"social"
+        cart: []
     }
 }
 

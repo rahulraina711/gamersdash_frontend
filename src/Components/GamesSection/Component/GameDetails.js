@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import './gamedetails.scss';
 import {gameDetailsURL} from '../../../utils';
 import axios from 'axios';
+import React from 'react';
 
 export default function GameDetails(props){
     const [game,setGame] = useState({});
+
     useEffect(()=>{
-        fetchandRenderDetails();
+        fetchandRenderDetails();        
     },[]);
 
     async function fetchandRenderDetails(){
