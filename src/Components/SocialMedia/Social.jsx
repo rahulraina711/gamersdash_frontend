@@ -3,15 +3,21 @@ import axios from 'axios';
 import {domain} from '../../utils'
 import './social.scss';
 import Post from './Post';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Social(){
 
 
     const [posts, setPosts] = useState([]);
+    const user = useSelector(state=>state.user);
+    const history = useHistory();
     
     useEffect(()=>{
-        getPosts();
+        !user.auth ? history.push("/"):getPosts();
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     async function getPosts(){

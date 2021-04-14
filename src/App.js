@@ -14,7 +14,7 @@ import {useHistory} from 'react-router-dom';
 export default function App(){
 
     const user = useSelector(state=>state.user);
-    console.log(user);
+    //console.log(user);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory();

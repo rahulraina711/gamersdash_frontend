@@ -15,6 +15,38 @@
         justify-content: center;
         align-items: center;
 
+        .add-comment{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            padding: 10px;
+            margin-top: 3px;
+            border-radius: 25px;
+            border: 1px rgba(255, 255, 255, 0.555) solid;
+
+            .user-info{
+                #user-profile{
+                    width: 5%;
+                    clip-path: circle(50%);
+                    margin-right: 5px;
+                }
+            }
+            .comment-adding-area{
+                display: flex;
+                justify-content: space-between;
+                width: 90%;
+                #comment-box{
+                    background: rgba(255, 235, 205, 0.205);
+                    border: unset;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    margin-right: 5px;
+
+                }
+            }
+        }
+
         .post-user-info{
             padding: 5px;
             border-radius: 30px;
@@ -55,6 +87,9 @@
                 display: flex;
                 justify-content: left;
                 align-items: center;
+                &:hover{
+                    cursor: pointer;
+                }
                 .like-count{
                     display: flex;
                     justify-content: left;
@@ -89,6 +124,9 @@
                 flex-direction: column;
                 margin-top: 3px;
                 border-radius: 20px;
+                &:hover{
+                    cursor: pointer;
+                }
                 .comment-owner{
                     display: flex;
                     justify-content: left;
