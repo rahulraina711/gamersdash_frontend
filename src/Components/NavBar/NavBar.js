@@ -62,8 +62,7 @@ function Navbar(){
                   anchorEl={anchorEl}
                   keepMounted
                   open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
+                  onClose={handleClose}>
                     <label style={{padding:15}}>Hello {user?.name}</label>
                     <MenuItem onClick={myAccount}>My account</MenuItem>
                     <MenuItem onClick={()=>{handleClose();logout()}}>Logout</MenuItem>

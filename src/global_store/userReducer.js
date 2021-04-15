@@ -2,7 +2,7 @@ import {createAction, createReducer} from '@reduxjs/toolkit';
 
 export const userAdded = createAction("userAdded");
 export const userRemoved = createAction("userRemoved");
-export const pageChanged = createAction("pageChanged");
+export const postChanged = createAction("postChanged");
 
 const initState = {
     user :{
@@ -14,6 +14,7 @@ const initState = {
 export default createReducer(initState,{
     userAdded: (state, action) => {
         state.user = {
+            ...state.user,
             id : action.payload.id,
             name: action.payload.name,
             profilePic: action.payload.profilePic,
@@ -22,7 +23,10 @@ export default createReducer(initState,{
     },
     userRemoved: (state, action) => {
         state.user = {
-            auth : false
+            auth: false,
+            cart: [],
+            postDeleted:false
         };
-    }
+    },
+
 })

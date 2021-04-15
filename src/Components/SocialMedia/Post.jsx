@@ -1,14 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {domain} from '../../utils';
-import {Favorite, InsertCommentOutlined, EventOutlined} from '@material-ui/icons';
+import {Favorite, InsertCommentOutlined, EventOutlined, MoreHoriz} from '@material-ui/icons';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import {Button} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
 import { useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
+
 
 export default function Post ({ post }) {
     const authedUser = useSelector(state=>state.user);
+    const history = useHistory();
+    const [likes, setLikes] = useState([])
     const [post_owner, setPost_owner] = useState({});
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
@@ -16,6 +22,7 @@ export default function Post ({ post }) {
     const [commentValue, setCommentValue] = useState(post.comments.length)
     const [likeColor, setLikeColor] = useState("primary");
     const [likeValue, setLikeValue] = useState(post.likes.length);
+    const [anchorEl, setAnchorEl] = useState();
     const AXIOS = axios.create({
         baseURL:domain,
         headers:{
@@ -29,6 +36,22 @@ export default function Post ({ post }) {
         
 
     },[]);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+    const handleClose = () => {
+        setAnchorEl(null);
+      };
+
+    async function getLikes(){
+        const likesRes = await AXIOS('/posts/'+post._id);
+        console.log("here",likesRes.data.likes);
+        setLikes(likesRes.data.likes);
+        setLikeValue(likesRes.data.likes.length);
+    }
+
     async function checkforlike(){
         post.likes.includes(authedUser.id)?setLikeColor("secondary"):setLikeColor("primary");
     }
@@ -41,13 +64,14 @@ export default function Post ({ post }) {
     async function likeHandler(){
         if(likeColor==="primary"){
             const addLike = await AXIOS.put("/likeops/"+post._id);
+            getLikes();
             setLikeColor("secondary");
-            setLikeValue(post.likes.length+1);
+            
         }
         else if(likeColor==="secondary"){
             const removeLike = await AXIOS.put("/likeops/unlike/"+post._id);
-            setLikeColor("primary");
-            setLikeValue(post.likes.length-1);
+            getLikes();
+            setLikeColor("primary");            
         }
     }
 
@@ -81,10 +105,34 @@ export default function Post ({ post }) {
         return [...comments].map(comment=>{
             return <Comment key={comment._id} comment={comment}/>
         })
-    } 
+    }
+    async function deletePost(id){
+        console.log(domain+"/posts/"+id);
+        const deletePostUp = await AXIOS.delete("/posts/"+id);
+        window.location.reload();
+        
+    }
+    let d = new Date(post.createdAt)
 
     return (
         <div key={post._id} className="landing-post">
+            <div className="more-options">
+                <div className="date">
+                    {d.toString().slice(0,15)}
+                </div>
+                <div className="options">
+                    <MoreHoriz onClick={handleClick}/>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}>
+                          <MenuItem on>Flag as fake / inappropriate</MenuItem>
+                          {post.userId===authedUser.id&&(<MenuItem onClick={()=>{deletePost(post._id);handleClose()}}>Delete</MenuItem>)}
+                    </Menu>
+                </div>
+            </div>
             <div className="post-user-info">
               <img id="post-user-image" alt="user_image" src={post_owner.profilePic} />
               <Link to={"/user/"+post.userId}>{post_owner.name}</Link>
