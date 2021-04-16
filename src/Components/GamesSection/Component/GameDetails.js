@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import './gamedetails.scss';
-import {gameDetailsURL} from '../../../utils';
 import axios from 'axios';
 import React from 'react';
+import {LinearProgress} from '@material-ui/core';
 
 export default function GameDetails({id,name, image, rating, ss, platforms, released}){
 
     const [desc , setDesc] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
        getDesc(id);
@@ -17,6 +18,7 @@ export default function GameDetails({id,name, image, rating, ss, platforms, rele
     async function getDesc(id){
         const descResp = await axios.get("https://api.rawg.io/api/games/"+id);
         setDesc(descResp.data.description);
+        setLoading(false);
     }
 
     function ssMapper(){
@@ -37,7 +39,7 @@ export default function GameDetails({id,name, image, rating, ss, platforms, rele
                 <img className="image-r" src={image} alt="poster"/>
                 <div className="rel-r">Release Date: {released}</div>
                 <div className="desc-r">
-                    <div dangerouslySetInnerHTML={{__html: desc}} id="description"/>
+                    {loading?<LinearProgress color="secondary" />:(<div dangerouslySetInnerHTML={{__html: desc}} id="description"/>)}
                 </div>
                 <div className="ss-r">
                     {ssMapper()}

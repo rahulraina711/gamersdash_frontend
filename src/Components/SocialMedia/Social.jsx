@@ -6,7 +6,7 @@ import Post from './Post';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
-import {Fab, Modal} from '@material-ui/core';
+import {Fab, Modal, LinearProgress} from '@material-ui/core';
 
 export default function Social(){
 
@@ -15,7 +15,8 @@ export default function Social(){
         headers:{
             Authorization:localStorage.getItem('auth_token')
         }
-    })
+    });
+    const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     const user = useSelector(state=>state.user);
     const history = useHistory();
@@ -40,7 +41,8 @@ export default function Social(){
     async function getPosts(){
         const postRes = await axios.get(domain+"/posts");
         setPosts(postRes.data);
-        console.log(postRes.data);
+        setLoading(false);
+        //console.log(postRes.data);
     }
     function renderPosts(){
         let sortedPosts = [...posts];
@@ -82,7 +84,7 @@ export default function Social(){
 
     return(
         <div>
-            <div className="main-posts-area">{renderPosts()}</div>
+            {loading?<LinearProgress color="secondary" />:(<div className="main-posts-area">{renderPosts()}</div>)}
             <div className="add-post-btn" title="Add a new POST">
             <Fab color="primary" aria-label="add" onClick={handleOpen}>
                 <AddIcon />
