@@ -35,7 +35,7 @@
             flex-direction: column;
             justify-content: left;
             padding: 10px;
-            margin-top: 3px;
+            margin-top: 5px;
             border-radius: 25px;
             border: 1px rgba(255, 255, 255, 0.555) solid;
 
@@ -86,13 +86,17 @@
             padding-top: 10px;
         }
         .desc{
-            padding: 5px;
-            width: 90%;
+            margin-top: 3px;
+            padding: 10px;
+            width: 88%;
             display: flex;
             justify-content: left;
             align-items: center;
+            background: rgba(255, 255, 255, 0.301);
+            border-radius: 5px;
         }
         .like-comment-event{
+            margin-top: 5px;
             width: 90%;
             display: flex;
             justify-content: space-between;

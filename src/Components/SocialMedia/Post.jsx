@@ -8,12 +8,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
 import { useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
 
 export default function Post ({ post }) {
     const authedUser = useSelector(state=>state.user);
-    const history = useHistory();
     const [likes, setLikes] = useState([])
     const [post_owner, setPost_owner] = useState({});
     const [comments, setComments] = useState([]);
@@ -35,6 +32,7 @@ export default function Post ({ post }) {
         getComments(post.comments);
         
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     const handleClick = (event) => {
@@ -109,6 +107,7 @@ export default function Post ({ post }) {
     async function deletePost(id){
         console.log(domain+"/posts/"+id);
         const deletePostUp = await AXIOS.delete("/posts/"+id);
+        console.table(deletePostUp);
         window.location.reload();
         
     }
@@ -137,8 +136,9 @@ export default function Post ({ post }) {
               <img id="post-user-image" alt="user_image" src={post_owner.profilePic} />
               <Link to={"/user/"+post.userId}>{post_owner.name}</Link>
             </div>
-            <img id="post-image" src={domain+"/"+post.postImage} alt="post-lander"/>
             <div className="desc">{post.desc}</div>
+            <img id="post-image" src={domain+"/"+post.postImage} alt="post-lander"/>
+            
             <div className="like-comment-event">
                 <div className="like-comment">
                     <div className="like-count">

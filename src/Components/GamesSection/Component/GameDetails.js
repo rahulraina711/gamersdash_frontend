@@ -4,33 +4,46 @@ import {gameDetailsURL} from '../../../utils';
 import axios from 'axios';
 import React from 'react';
 
-export default function GameDetails(props){
-    const [game,setGame] = useState({});
+export default function GameDetails({id,name, image, rating, ss, platforms, released}){
+
+    const [desc , setDesc] = useState();
 
     useEffect(()=>{
-        fetchandRenderDetails();        
+       getDesc(id);
+       // pfMapper();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-    async function fetchandRenderDetails(){
-        const detailsResponse = await axios.get(gameDetailsURL(props.id));
-        const gameDetails = detailsResponse.data;
-        // document.getElementById("description").innerHTML=gameDetails.description;
-        return setGame(gameDetails);
+    async function getDesc(id){
+        const descResp = await axios.get("https://api.rawg.io/api/games/"+id);
+        setDesc(descResp.data.description);
     }
+
+    function ssMapper(){
+        //console.log(ss);
+        return ss.map((item,idx)=>{
+            return <img className="ss-im" key={idx} src={item.image} alt="sc_sh"/>
+        })
+    }
+
+    // function pfMapper(){
+    //     console.log(platforms);
+    // }
 
     return(
         <div className="container">
             <div className="main-container" >
-            <img className="poster" src={game.background_image} alt="poster"/>
-            <div className="details-card">
-                <div className="name">{game.name}</div>
-                <div dangerouslySetInnerHTML={{__html: game.description}} id="description"/>
-                <div className="extras">
-                    <p>Rating: {game.rating}</p> 
-                    <p>Visit :<a href={game.website}>website</a> for more details.</p>
+                <div className="name-r">{name}</div>
+                <img className="image-r" src={image} alt="poster"/>
+                <div className="rel-r">Release Date: {released}</div>
+                <div className="desc-r">
+                    <div dangerouslySetInnerHTML={{__html: desc}} id="description"/>
                 </div>
+                <div className="ss-r">
+                    {ssMapper()}
+                </div>
+                <div className="rating-r">Rating: {rating}</div>
             </div>
-        </div>
         </div>
     )
 }

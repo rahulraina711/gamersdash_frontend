@@ -7,6 +7,7 @@ export default function Comment({comment}){
 
     useEffect(()=>{
         getOwnerDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     async function getOwnerDetails (){

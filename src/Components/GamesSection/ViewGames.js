@@ -18,19 +18,21 @@ export default function ViewGame() {
 
     useEffect(()=>{
         fetchPopularGames(newGamesURL());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const fetchPopularGames =async (url) => {
         const rawgResponse = await axios.get(url);
         setGamesList([...gamesList,...await rawgResponse.data.results]);
         setNextPage(rawgResponse.data.next);
+        console.log(rawgResponse.data);
         setLoading(false);
         
     }
     function renderGameCard() {
         let newGameList = [...gamesList];
         return newGameList.map((game,idx) => {
-            return <GameCard key={idx} name={game.name} image={game.background_image} id={game.id}/>
+            return <GameCard key={game.id} name={game.name} image={game.background_image} id={game.id} genres={game.genres} rating={game.rating} platforms={game.platforms} released={game.released} ss={game.short_screenshots} />
         })
     }
 

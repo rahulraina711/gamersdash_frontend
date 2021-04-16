@@ -18,29 +18,38 @@ export default function App(){
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory();
+    const AXIOS = axios.create({
+        baseURL: domain,
+        headers:{
+            Authorization:localStorage.getItem('auth_token')
+        }
+    });
     
     useEffect(()=>{
         checkForKey();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
 
     async function checkForKey(){
         const oldKey = localStorage.getItem('auth_token');
         // const userOld = jwt.decode(oldKey)
+
         async function testKey (){
             try{
                 const auth = jwt.verify(oldKey, xyz); 
                 const loggedInUser = await axios.get(domain+"/user/"+auth.userId);
-                const {name,email,profilePic} = loggedInUser.data;
-                dispatch(userAdded({
-                    id:auth.userId,
-                    name,
-                    profilePic
-                }))
-                // setUser({
-                //     name,
-                //     email,
-                //     profilePic
-                // });
+                const {name,profilePic} = loggedInUser.data;
+                AXIOS.get("/orders")
+                .then(res =>{
+                    dispatch(userAdded({
+                        id:auth.userId,
+                        name,
+                        profilePic,
+                        cart : res.data.doc
+                    }))
+                })
+                .catch(err=>console.error(err));
                 
                 setLoading(false); 
                 // console.log(popularGamesURL());
