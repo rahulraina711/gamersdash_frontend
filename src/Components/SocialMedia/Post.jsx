@@ -150,7 +150,7 @@ export default function Post ({ post }) {
                     
                 </div>
                 
-                {post.isEvent==="true" && <Button className="isEvent" variant="contained" color="primary" >Add Reminder<EventOutlined /></Button>}                        
+                {post.isEvent==="true" && <Button className="isEvent" variant="contained" color="primary" target="_blank" rel="noopener norefrence" href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=909752796516-tai4asagcrndntlnrr9t1vutbrnak2fp.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground" >Add Reminder<EventOutlined /></Button>}                        
             </div>
             {showComments && (<div className="comments-section">
                 {renderComments()}

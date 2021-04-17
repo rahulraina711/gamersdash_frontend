@@ -6,6 +6,7 @@ import ViewGame from './Components/GamesSection/ViewGames';
 import Social from './Components/SocialMedia/Social';
 import Store from './Components/Store/Store';
 import MyAccount from './Components/MyAccount/MyAccount';
+import Calendar from './Components/Calendar/Calendar';
 
 function Router(){
 
@@ -26,6 +27,7 @@ function Router(){
                     <Route path="/social"><Social/></Route>
                     <Route path="/store"><Store/></Route>
                     <Route path="/user/:id" children={<UserChild/>}></Route>
+                    <Route path="/auth/success"><Calendar /></Route>
                 </Switch>
         </BrowserRouter>
     )
