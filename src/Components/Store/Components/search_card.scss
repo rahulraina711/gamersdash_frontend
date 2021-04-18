@@ -1,0 +1,45 @@
+.prod-card{
+    display: flex;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 3px 0 3px 0;
+    .prod-image{
+        flex:1;
+        .fit-pic{
+            width: 300px;
+            height: 250px;
+            object-fit: contain;
+        }
+    }
+    .prod-details{
+        flex: 2;
+        .prod-name{
+            padding: 3px;
+            font-size: 1.25rem;
+        }
+        .prod-description{
+            padding: 3px;
+            font-size: 0.8rem;
+        }
+    }
+    .cart-fxns{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .price{
+            padding: 5px;
+            font-size: 1.25rem;
+        }
+        .in-stock{
+            padding: 1px 0 5px 0;
+            font-size: 0.8rem;
+            color: chartreuse;
+        }
+        .a2c{
+            background: yellow;
+        }
+    }
+}

@@ -1,12 +1,38 @@
 .main-landing-page{
     display: flex;
+    justify-content: center;
     .store-main{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         .store-nav{
-            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            .search{
+                margin-right: 15px;
+                display: flex;
+                align-items: flex-end;
+                padding: 5px 20px 5px 20px;
+                background: rgba(255, 255, 255, 0.37);
+                border-radius: 5px;
+                .search-icon{
+                    border-bottom: 2px solid black;
+                }
+                #search-bar{
+                    padding: 10px 5px 10px 5px;
+                    font-size: 1.25rem;
+                    background: unset;
+                    box-shadow: unset;
+                    border: unset;
+                    border-bottom: 2px solid rgb(0, 0, 0);
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
             .cart-stats{
                 
                 .items-in-cart{

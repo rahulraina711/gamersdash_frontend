@@ -1,8 +1,8 @@
 import {domain} from '../../../utils';
-import './product.scss';
+import './products.scss';
 import {AddShoppingCart} from '@material-ui/icons';
 import {addToCart} from '../../../global_store/cartReducer';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {RiLuggageCartFill} from 'react-icons/ri';
 import toast, { Toaster } from 'react-hot-toast';
@@ -11,6 +11,15 @@ export default function ProductCard({id , image , name , description , price , c
 
   const [inCart, setInCart] = useState(false)
   const userCart = useSelector(state => state.cart.cart);
+
+  useEffect(()=>{
+    if(userCart.includes(id)){
+      setInCart(true);
+    }
+    else{
+      setInCart(false)
+    }
+  },[]);
 
   const dispatch = useDispatch();
   function addAction(id){
