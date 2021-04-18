@@ -7,7 +7,7 @@ import {GiShoppingCart} from 'react-icons/gi'
 import {BiSearchAlt} from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import {addToCart} from '../../global_store/cartReducer';
-import {LinearProgress} from '@material-ui/core';
+import {CircularProgress} from '@material-ui/core';
 
 export default function Store(){
 
@@ -78,7 +78,7 @@ export default function Store(){
                 <div className="store">
                     
                     <div className="products-page">
-                        {loading&&<LinearProgress color="secondary"/>}
+                        {loading&&<CircularProgress color="secondary"/>}
                         {mapProducts()}
                     </div>
                 </div>
