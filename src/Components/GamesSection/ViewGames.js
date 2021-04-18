@@ -9,7 +9,7 @@ import {Button, CircularProgress} from '@material-ui/core';
 
 export default function ViewGame() {
 
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.user.user);
     const history = useHistory();
     const [gamesList, setGamesList] = useState([]);
     const [nextPage, setNextPage] = useState("");

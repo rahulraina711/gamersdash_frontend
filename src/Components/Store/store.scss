@@ -1,0 +1,38 @@
+.main-landing-page{
+    display: flex;
+    .store-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .store-nav{
+            
+            .cart-stats{
+                
+                .items-in-cart{
+                    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: yellow;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    margin-top: -20px;                    
+                }
+            }
+        }
+        .store{
+            display: flex;
+            justify-content: center;
+        
+            .products-page{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 70%;
+                align-items: center;
+            }
+        }
+    }
+}

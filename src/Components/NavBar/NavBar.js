@@ -8,7 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import logo from './logo.png';
 
 function Navbar(){
-    const user = useSelector(state=> state.user)
+    const user = useSelector(state=> state.user.user)
     const [games, setGames] = useState(true);
     const [store, setStore] = useState(false);
     const [social, setSocial] = useState(false);

@@ -13,17 +13,11 @@ import {useHistory} from 'react-router-dom';
 
 export default function App(){
 
-    const user = useSelector(state=>state.user);
-    //console.log(user);
+    const user = useSelector(state=>state.user.user);
+    //console.lhttp://localhost:3000/storeog(user);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory();
-    const AXIOS = axios.create({
-        baseURL: domain,
-        headers:{
-            Authorization:localStorage.getItem('auth_token')
-        }
-    });
     
     useEffect(()=>{
         checkForKey();
@@ -40,19 +34,14 @@ export default function App(){
                 const auth = jwt.verify(oldKey, xyz); 
                 const loggedInUser = await axios.get(domain+"/user/"+auth.userId);
                 const {name,profilePic} = loggedInUser.data;
-                AXIOS.get("/orders")
-                .then(res =>{
-                    dispatch(userAdded({
-                        id:auth.userId,
-                        name,
-                        profilePic,
-                        cart : res.data.doc
-                    }))
-                })
-                .catch(err=>console.error(err));
+                dispatch(userAdded({
+                    id:auth.userId,
+                    name,
+                    profilePic
+                }))
                 
                 setLoading(false); 
-                // console.log(popularGamesURL());
+                
                 history.push("/games");
                 
             }

@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import userReducer from './userReducer';
+import combRed from './combineReducers';
 
 export default function configStore () {
     return configureStore({
-        reducer :userReducer
+        reducer :combRed
     });
 };
