@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export default function Store(){
 
-    const userCart = useSelector(state=>state.cart);
+    const userCart = useSelector(state=>state.cart.cart);
     const [products, setProducts] = useState([]);
     const AXIOS = axios.create({
         baseURL: domain,

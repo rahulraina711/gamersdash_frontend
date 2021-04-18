@@ -10,7 +10,7 @@ import Comment from './Comment';
 import { useSelector } from 'react-redux';
 
 export default function Post ({ post }) {
-    const authedUser = useSelector(state=>state.user);
+    const authedUser = useSelector(state=>state.user.user);
     const [likes, setLikes] = useState([])
     const [post_owner, setPost_owner] = useState({});
     const [comments, setComments] = useState([]);

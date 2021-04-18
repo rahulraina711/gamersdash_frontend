@@ -1,37 +1,36 @@
 import {domain} from '../../../utils';
 import './product.scss';
-
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { yellow } from '@material-ui/core/colors';
 import {AddShoppingCart} from '@material-ui/icons';
-
+import {addToCart} from '../../../global_store/cartReducer';
+import React,{useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {RiLuggageCartFill} from 'react-icons/ri';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProductCard({id , image , name , description , price , countInStock}){
 
+  const [inCart, setInCart] = useState(false)
+  const userCart = useSelector(state => state.cart.cart);
 
+  const dispatch = useDispatch();
   function addAction(id){
-
-  }
-    const useStyles = makeStyles((theme) => ({
-        margin: {
-          margin: theme.spacing(1),
-        },
-      }));
-    const classes = useStyles();
-    const theme = createMuiTheme({
-        palette: {
-          primary: yellow,
-        },
-      });
-      
-
-    function beautifyDesc(){
-        let coolDesc = description.split('.');
-        return coolDesc.map((desc,idx)=>{
-            return <li key={idx}>{desc}</li>
-        })
+    if(!userCart.includes(id)){
+      dispatch(addToCart({id:id}));
+      setInCart(true);
+      toast.success("item added to cart");
     }
+    else{
+      toast.error("item already in cart");
+    }
+    
+  }
+
+  function beautifyDesc(){
+    let coolDesc = description.split('.');
+      return coolDesc.map((desc,idx)=>{
+          return <li key={idx}>{desc}</li>
+        })
+  }
 
     return(
         <div className="prod-card">
@@ -49,12 +48,24 @@ export default function ProductCard({id , image , name , description , price , c
             <div className="cart-fxns">
                 <div className="price">Price: ₹{price}</div>
                 <div className="in-stock">In Stock : {countInStock}</div>
-                <ThemeProvider theme={theme}>
-                  <Button variant="contained" color="primary" className={classes.margin} onClick={()=>addAction(id)}>
-                    <AddShoppingCart />
-                  </Button>
-                </ThemeProvider>
+                  <button className="a2c" onClick={()=>addAction(id)}>
+                    {!inCart?<AddShoppingCart />:<RiLuggageCartFill size={25}/>}
+                  </button>
             </div>
+            <Toaster
+                toastOptions={{
+                  success: {
+                    style: {
+                      background: 'green',
+                    },
+                  },
+                  error: {
+                    style: {
+                      background: 'yellow',
+                    },
+                  },
+                }}
+              />
         </div>
     )
 }
