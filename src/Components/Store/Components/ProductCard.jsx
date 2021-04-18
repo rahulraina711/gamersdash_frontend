@@ -6,11 +6,18 @@ import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {RiLuggageCartFill} from 'react-icons/ri';
 import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
 export default function ProductCard({id , image , name , description , price , countInStock}){
 
   const [inCart, setInCart] = useState(false)
   const userCart = useSelector(state => state.cart.cart);
+  const AXIOS = axios.create({
+    baseURL:domain,
+    headers:{
+      Authorization: localStorage.getItem('auth_token')
+    }
+  })
 
   useEffect(()=>{
     if(userCart.includes(id)){
@@ -19,12 +26,17 @@ export default function ProductCard({id , image , name , description , price , c
     else{
       setInCart(false)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   const dispatch = useDispatch();
-  function addAction(id){
+
+
+  async function addAction(id){
     if(!userCart.includes(id)){
       dispatch(addToCart({id:id}));
+      // eslint-disable-next-line no-unused-vars
+      const createOrder =await AXIOS.post("/orders",{productId:id});
       setInCart(true);
       toast.success("item added to cart");
     }

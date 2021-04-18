@@ -41,7 +41,9 @@ export default function Store(){
     async function fetchOrders(){
         const ordersRes = await AXIOS.get("/orders");
         for(let x of ordersRes.data.doc){
-            dispatch(addToCart({id:x.productId._id}));
+            !userCart.includes(x.productId._id)?
+            dispatch(addToCart({id:x.productId._id})):
+            console.log("in cart");
         }
     }
     async function fetchProducts(url){

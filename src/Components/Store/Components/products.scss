@@ -16,8 +16,11 @@
     .prod-details{
         flex: 2;
         .prod-name{
-            padding: 3px;
+            color: white;
+            padding: 5px;
             font-size: 1.25rem;
+            background: rgb(87, 87, 87);
+            border-radius: 5px;
         }
         .prod-description{
             padding: 3px;
