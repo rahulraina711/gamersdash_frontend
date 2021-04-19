@@ -26,7 +26,6 @@ export default createReducer(initState,{
         
     },
     setCartTotal: (state, action)=>{
-        console.log(state);
         return{
             ...state,
             total: action.payload.total,

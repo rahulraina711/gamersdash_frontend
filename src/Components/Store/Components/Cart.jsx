@@ -37,6 +37,18 @@ export default function Cart (){
         })
     }
 
+    async function checkout(){
+        const xyzRes = await AXIOS.get("/orders");
+        const amount = xyzRes.data.cartTotal;
+        c2Im(amount);
+
+    }
+    async function c2Im(amount){
+        const makePaymentRes = await AXIOS.post(domain+"/payment",{amount});
+        
+        window.open(makePaymentRes.data.url);
+    }
+ 
     return (
         <div className="fb-h">
             <div className="fb-c">
@@ -44,7 +56,7 @@ export default function Cart (){
                     {renderOrders()}
                 </div>
                 <div className="checkout-area">
-                    <button className="checkout">
+                    <button className="checkout" onClick={checkout}>
                         Proceed to checkout
                     </button>
                     <div className="t-amount">
