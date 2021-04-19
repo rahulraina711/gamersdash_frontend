@@ -2,14 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: black 2px solid;
     .fb-c{
         display: flex;
         flex-direction: column;
         .cart{
             background: white;
             padding: 10px;
-            width: 80%;
+            
             border: yellow 2px solid;
             .order-comp{
                 display: flex;
@@ -73,7 +72,6 @@
             }
         }
         .checkout-area{
-            width: 81%;
             margin-top: 10px;
             display: flex;
             justify-content: space-evenly;

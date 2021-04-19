@@ -3,11 +3,14 @@ import './cart.scss';
 import axios from 'axios';
 import { domain } from '../../../utils';
 import Order from './Order';
+import {setCartTotal} from '../../../global_store/cartReducer'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Cart (){
     const [orders, setOrders] = useState([]);
-    const [total, setTotal] = useState("");
+    const total = useSelector(state=> state.cart.total)
+    const dispatch = useDispatch();
     const AXIOS = axios.create({
         baseURL:domain,
         headers:{
@@ -23,7 +26,8 @@ export default function Cart (){
         const orderRes = await AXIOS.get("/orders");
         // console.log(orderRes.data.cartTotal)
         setOrders(orderRes.data.doc)
-        setTotal(orderRes.data.cartTotal)
+        dispatch(setCartTotal({total:orderRes.data.cartTotal}))
+        
     }
 
     function renderOrders(){

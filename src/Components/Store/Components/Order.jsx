@@ -4,7 +4,7 @@ import {AiTwotoneDelete} from 'react-icons/ai';
 import {MdAdd, MdRemove} from 'react-icons/md';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../../global_store/cartReducer'
+import { removeFromCart ,incTotal, decTotal} from '../../../global_store/cartReducer'
 
 export default function Order({order}){
 
@@ -20,17 +20,28 @@ export default function Order({order}){
     const [quantity, setQuantity] = useState(order.quantity);
 
     function handleQuanAdd(){
+        setQuantity(quantity+1);
         patchOrderQuantity(order._id);
-        quantity<10&&setQuantity(quantity+1);
+        dispatch(incTotal({price:order.productId.price}))
     }
+
     function handleQuanSub(){
-        patchOrderQuantity(order._id);
-        quantity>1&&setQuantity(quantity-1);
+        setQuantity(quantity-1);
+        patchOrderQuantityRem(order._id);
+        dispatch(decTotal({price:order.productId.price}))
     }
 
     async function patchOrderQuantity(orderId){
         try {
-            const patchOrderRes = AXIOS.patch(domain+"/orders/"+orderId, {quantity});            
+            const patchOrderRes = AXIOS.patch(domain+"/orders/"+orderId, {quantity:quantity+1});            
+        } catch (error) {
+            console.table(error);
+        }
+        
+    }
+    async function patchOrderQuantityRem(orderId){
+        try {
+            const patchOrderRes = AXIOS.patch(domain+"/orders/"+orderId, {quantity:quantity-1});            
         } catch (error) {
             console.table(error);
         }
@@ -42,6 +53,7 @@ export default function Order({order}){
         try{
             const delOrderRes = AXIOS.delete(domain+"/orders/"+order._id);
             dispatch(removeFromCart({id: order.productId._id}));
+            dispatch(decTotal({price:quantity*order.productId.price}));
             setDeleted(true);
         }
         catch(err){
@@ -54,11 +66,11 @@ export default function Order({order}){
             <img className="o-img" src={domain+"/"+order.productId.productImage} alt="order_image"/>
             <div className="o-name">{order.productId.name}</div>
             <div className="o-quan">
-                <div className="q-rem"><MdRemove onClick={handleQuanSub}/></div>
+                <div className="q-rem"><MdRemove onClick={()=>quantity>1&&handleQuanSub()}/></div>
                 <div className="q">{quantity}</div>
-                <div className="q-add"><MdAdd onClick={handleQuanAdd}/></div>
+                <div className="q-add"><MdAdd onClick={()=>quantity<10&&handleQuanAdd()}/></div>
             </div>
-            <div className="o-price">{"₹ "+order.productId.price*quantity}</div>
+            <div className="o-price">{"₹ "+order.productId.price}</div>
             <div className="o-delete"><AiTwotoneDelete size={25} onClick={handleDelete}/></div>
         </div>)
     )
