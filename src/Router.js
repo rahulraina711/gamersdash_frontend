@@ -7,6 +7,7 @@ import Social from './Components/SocialMedia/Social';
 import Store from './Components/Store/Store';
 import MyAccount from './Components/MyAccount/MyAccount';
 import Calendar from './Components/Calendar/Calendar';
+import Cart from './Components/Store/Components/Cart';
 
 function Router(){
 
@@ -28,6 +29,7 @@ function Router(){
                     <Route path="/store"><Store/></Route>
                     <Route path="/user/:id" children={<UserChild/>}></Route>
                     <Route path="/auth/success"><Calendar /></Route>
+                    <Route path="/cart"><Cart /></Route>
                 </Switch>
         </BrowserRouter>
     )

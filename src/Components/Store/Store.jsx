@@ -8,11 +8,13 @@ import {BiSearchAlt} from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import {addToCart} from '../../global_store/cartReducer';
 import {CircularProgress} from '@material-ui/core';
+import {useHistory} from 'react-router-dom';
 
 export default function Store(){
 
     const userCart = useSelector(state=>state.cart.cart);
     const dispatch = useDispatch();
+    const history = useHistory();
     const [products, setProducts] = useState([]);
     // const [searchResult, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -53,6 +55,10 @@ export default function Store(){
         setLoading(false);
     }
 
+    function toCart(){
+        history.push("/cart");
+    }
+
     function mapProducts(){
         let sortedProducts = [...products];
         sortedProducts = sortedProducts.sort((a, b)=>{
@@ -73,7 +79,7 @@ export default function Store(){
                        <input id="search-bar" placeholder="search" value={searchText} onChange={(e)=>handleSearch(e)}/>
                    </div>
                    <div className="cart-stats">
-                        <GiShoppingCart size={50}/>
+                        <GiShoppingCart size={50} onClick={toCart}/>
                         <div className="items-in-cart">{userCart.length || "0"}</div>
                    </div>
                 </div>       

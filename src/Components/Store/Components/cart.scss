@@ -1,0 +1,100 @@
+.fb-h{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black 2px solid;
+    .fb-c{
+        display: flex;
+        flex-direction: column;
+        .cart{
+            background: white;
+            padding: 10px;
+            width: 80%;
+            border: yellow 2px solid;
+            .order-comp{
+                display: flex;
+                padding: 5px;
+                align-items: center;
+                .o-img{
+                    width: 100px;
+                    object-fit: contain;
+                    padding: 5px;
+                    flex: 1;
+                }
+                .o-name{
+                    padding: 2px 6px 2px 6px;
+                    flex: 5;
+                }
+                .o-quan{
+                    padding: 2px 10px 2px 10px;
+                    flex: 1;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .q-rem{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 3px;
+                        border: 2px solid yellow;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                    .q-add{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 3px;
+                        border: 2px solid yellow;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .o-price{
+                    padding: 2px 10px 2px 10px;
+                    flex: 1;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+                .o-delete{
+                    padding: 2px 10px 2px 10px;
+                    flex: 1;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
+            }
+        }
+        .checkout-area{
+            width: 81%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.363);
+            border-radius: 10px;
+            .t-amount{
+                .amount{
+                    color: yellow;
+                }
+            }
+            .checkout{
+                background: yellow;
+                padding: 10px;
+                font-size: 1rem;
+                margin-left: 30px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
