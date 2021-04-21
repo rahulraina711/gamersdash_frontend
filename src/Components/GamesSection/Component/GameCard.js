@@ -15,7 +15,7 @@ export default function GameCard({name, image, id, genres, ss, rating, platforms
 
     const body = (
         <div className="modal-r-r">
-            <Button variant="contained" color="secondary" onClick={handleClose}>close</Button>
+            <Button id="close-btn-m" variant="contained" color="secondary" onClick={handleClose}>Close</Button>
             <GameDetails name={name} image={image} id={id} genres={genres} ss={ss} rating={rating} platforms={platforms} released={released}/>
         </div>
     )
@@ -29,6 +29,7 @@ export default function GameCard({name, image, id, genres, ss, rating, platforms
                 {name}
             </div>
             <Modal
+                id="game-modal-id"
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"

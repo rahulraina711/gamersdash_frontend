@@ -4,7 +4,7 @@ export const api_key_calender = "AIzaSyAupx-L18yrgyMlOxKegcUOIVaRwQgTmrg"
 export const xyz = "iajbfakncaicubackajbcahcvisrjngf74t509rwijf2398u329h9v398h3298j";
 
 const BASE_URL = "https://api.rawg.io/api";
-const API = "871b8db4c8c14c308a2a68ddd8621fad";
+const API = "b3f76a2d099f40e1abecff43907a0c41";
 
 //dates
 const getCurrentMonth = () => {

@@ -82,11 +82,12 @@ export default function Store(){
                         <GiShoppingCart size={50} onClick={toCart}/>
                         <div className="items-in-cart">{userCart.length || "0"}</div>
                    </div>
-                </div>       
+                </div> 
+                {loading&&<CircularProgress color="secondary"/>}      
                 <div className="store">
                     
                     <div className="products-page">
-                        {loading&&<CircularProgress color="secondary"/>}
+                        
                         {mapProducts()}
                     </div>
                 </div>

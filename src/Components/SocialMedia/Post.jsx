@@ -160,8 +160,8 @@ export default function Post ({ post }) {
                     <img id="user-profile" alt="u-profile" src={authedUser.profilePic}/>{authedUser.name}
                 </div>
                 <div className="comment-adding-area">
-                    <input className="comment-box" placeholder="Click here to write a comment" size={65}value={newComment} onChange={(e)=>setNewComment(e.target.value)}/>
-                    <Button color="secondary" variant="contained" onClick={commentPost}>post</Button>
+                    <input className="comment-box" placeholder="Click here to write a comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)}/>
+                    <Button color="secondary" variant="contained" onClick={commentPost}>Post</Button>
                 </div>
             </div>
         </div>

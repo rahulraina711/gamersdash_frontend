@@ -31,3 +31,10 @@
         }
     }
 }
+
+#game-modal-id{
+    &:focus{
+        border: yellow;
+        border-radius: 20px;
+    }
+}

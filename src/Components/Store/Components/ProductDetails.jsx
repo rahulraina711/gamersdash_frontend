@@ -1,5 +1,5 @@
 import {domain} from '../../../utils';
-import './products.scss';
+import './productDetail.scss';
 import {AddShoppingCart} from '@material-ui/icons';
 import {addToCart} from '../../../global_store/cartReducer';
 import React,{useEffect, useState} from 'react';
@@ -45,13 +45,26 @@ export default function ProductCard({id , image , name , description , price , c
     }
     
   }
+
+  function beautifyDesc(){
+    let coolDesc = description.split('.');
+      return coolDesc.map((desc,idx)=>{
+          return <li key={idx}>{desc}</li>
+        })
+  }
+
     return(
         <div className="prod-card">
             <div className="prod-image">
                 <img className="fit-pic" src={domain+"/"+image} alt="image_prod" />
             </div>
             <div className="prod-details">
-                <div className="prod-name">{name.slice(0,45)}...</div>
+                <div className="prod-name">{name}</div>
+                <div className="prod-description">
+                        <ul>
+                            {beautifyDesc()}
+                        </ul>
+                    </div>
             </div>
             <div className="cart-fxns">
                 <div className="price">Price: ₹{price}</div>

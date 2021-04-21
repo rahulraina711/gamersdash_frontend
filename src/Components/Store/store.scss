@@ -54,12 +54,14 @@
         .store{
             display: flex;
             justify-content: center;
-        
+            
             .products-page{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+                display: grid;
                 width: 70%;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                justify-content: center;
+                gap: 4px 20px;
+                
                 align-items: center;
             }
         }

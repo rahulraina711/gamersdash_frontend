@@ -16,7 +16,8 @@ export default function GameDetails({id,name, image, rating, ss, platforms, rele
     },[]);
 
     async function getDesc(id){
-        const descResp = await axios.get("https://api.rawg.io/api/games/"+id);
+        
+        const descResp = await axios.get("https://api.rawg.io/api/games/"+id+"?key=b3f76a2d099f40e1abecff43907a0c41");
         setDesc(descResp.data.description);
         setLoading(false);
     }

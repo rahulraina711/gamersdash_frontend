@@ -1,12 +1,13 @@
 .prod-card{
     display: flex;
+    flex-direction: column;
     background: white;
     padding: 10px;
     border-radius: 10px;
     margin: 3px 0 3px 0;
     width: 95%;
     .prod-image{
-        flex:1;
+        
         .fit-pic{
             width: 300px;
             height: 250px;
@@ -14,18 +15,13 @@
         }
     }
     .prod-details{
-        flex: 2;
+        
         .prod-name{
-            color: white;
+            color: black;
             padding: 5px;
-            font-size: 1.25rem;
-            background: rgb(87, 87, 87);
-            border-radius: 5px;
+            font-size: 1rem;
         }
-        .prod-description{
-            padding: 3px;
-            font-size: 0.8rem;
-        }
+
     }
     .cart-fxns{
         flex: 1;
@@ -39,7 +35,7 @@
         }
         .in-stock{
             padding: 1px 0 5px 0;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: chartreuse;
         }
         .a2c{

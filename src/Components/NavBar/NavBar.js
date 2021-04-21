@@ -27,6 +27,7 @@ function Navbar(){
       };
       function logout(){
         localStorage.removeItem('auth_token');
+        gamesOn();
         history.push("/");
     }
     function gamesOn(){
