@@ -147,7 +147,7 @@ export default function Post ({ post }) {
                         <Favorite color={likeColor} onClick={likeHandler}/> {likeValue}
                     </div>
                     <div className="comment-count">
-                        <InsertCommentOutlined color="primary" onClick={commentVisibilityHandler} /> {commentValue}
+                        <InsertCommentOutlined color="secondary" onClick={commentVisibilityHandler} /> {commentValue}
                     </div>
                     
                 </div>                        
