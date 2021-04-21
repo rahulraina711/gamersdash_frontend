@@ -52,17 +52,17 @@ export default function Cart (){
     return (
         <div className="fb-h">
             <div className="fb-c">
-                <div className="cart">
+
+                {orders.length?(<div className="cart">
                     {renderOrders()}
-                </div>
+                </div>):<div className="cart">Seems quite empty here....</div>}
                 <div className="checkout-area">
                     <button className="checkout" onClick={checkout}>
                         Proceed to checkout
                     </button>
                     <div className="t-amount">
                         Total billable amount : <div className="amount">₹ {total}</div>
-                    </div>
-                    
+                    </div>  
                 </div>
             </div>
         </div>
