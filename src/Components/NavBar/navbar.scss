@@ -1,11 +1,16 @@
 .nav-bar{
     padding: 15px;
+    
 
     
     .first{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background: rgba(255, 255, 255, 0.322);
+        padding: 0 10px 0 10px;
+        border-radius: 20px;
+        margin-bottom: 5px;
         .logo{
             display: flex;
             justify-content: center;
@@ -34,6 +39,7 @@
     .second{
         display: flex;
         justify-content: space-around;
+        
         .nav-links{
             padding: 15px;
             .active{

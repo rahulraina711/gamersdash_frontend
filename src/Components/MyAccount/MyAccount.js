@@ -13,7 +13,7 @@ export default function MyAccount({id}) {
             Authorization:localStorage.getItem('auth_token')
         }
     })
-    const loggedUser = useSelector(state=>state.user);
+    const loggedUser = useSelector(state=>state.user.user);
     const [userId, setUserId] = useState('');
     const [name, setName] = useState('');
     const [occupation, setOccupation] = useState('');
@@ -73,9 +73,8 @@ export default function MyAccount({id}) {
         setAbout(userRes.data?.about);
         setOccupation(userRes.data?.occupation);
         console.table(user, loggedUser);
-        setTimeout(()=>{
-            loggedUser.id===userRes.data._id?setEditing(true):setEditing(false);
-        },200);
+        console.log(loggedUser.id, userRes.data._id);
+        loggedUser.id===userRes.data._id?setEditing(true):setEditing(false);
         
     }
 

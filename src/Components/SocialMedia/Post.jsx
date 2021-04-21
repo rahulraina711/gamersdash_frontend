@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {domain} from '../../utils';
-import {Favorite, InsertCommentOutlined, EventOutlined, MoreHoriz} from '@material-ui/icons';
+import {Favorite, InsertCommentOutlined, MoreHoriz} from '@material-ui/icons';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {Button} from '@material-ui/core';
@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
 import { useSelector } from 'react-redux';
+
+// {post.isEvent==="true" && <Button className="isEvent" variant="contained" color="primary" target="_blank" rel="noopener norefrence" href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=909752796516-tai4asagcrndntlnrr9t1vutbrnak2fp.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground" >Add Reminder<EventOutlined /></Button>}
 
 export default function Post ({ post }) {
     const authedUser = useSelector(state=>state.user.user);
@@ -148,9 +150,7 @@ export default function Post ({ post }) {
                         <InsertCommentOutlined color="primary" onClick={commentVisibilityHandler} /> {commentValue}
                     </div>
                     
-                </div>
-                
-                {post.isEvent==="true" && <Button className="isEvent" variant="contained" color="primary" target="_blank" rel="noopener norefrence" href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=909752796516-tai4asagcrndntlnrr9t1vutbrnak2fp.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground" >Add Reminder<EventOutlined /></Button>}                        
+                </div>                        
             </div>
             {showComments && (<div className="comments-section">
                 {renderComments()}

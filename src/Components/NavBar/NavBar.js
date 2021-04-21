@@ -2,7 +2,7 @@ import {Link, useHistory} from 'react-router-dom'
 import './navbar.scss';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import logo from './logo.png';
@@ -17,6 +17,10 @@ function Navbar(){
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
+
+      useEffect(()=>{
+          gamesOn();
+      },[])
     
       const handleClose = () => {
         setAnchorEl(null);
