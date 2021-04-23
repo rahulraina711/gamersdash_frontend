@@ -64,6 +64,7 @@ export default function ProductCard({id , image , name , description , price , c
     
   }
     return(
+      <div className="card-main">
         <div className="prod-card">
             <div className="prod-image">
                 <img className="fit-pic" src={domain+"/"+image} alt="image_prod" />
@@ -73,7 +74,7 @@ export default function ProductCard({id , image , name , description , price , c
             </div>
             <div className="cart-fxns">
                 <div className="price">Price: ₹{price}</div>
-                <div className="in-stock">In Stock : {countInStock}</div>
+                
                   <button className="a2c" onClick={()=>addAction(id)}>
                     {!inCart?<AddShoppingCart />:<RiLuggageCartFill size={25}/>}
                   </button>
@@ -101,6 +102,7 @@ export default function ProductCard({id , image , name , description , price , c
                 >
                 {body}
             </Modal>
+        </div>
         </div>
     )
 }

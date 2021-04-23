@@ -68,10 +68,8 @@ export default function ProductDetail({id , image , name , description , price ,
             </div>
             <div className="cart-fxns">
                 <div className="price">Price: ₹{price}</div>
-                <div className="in-stock">In Stock : {countInStock}</div>
-                  <button className="a2c" onClick={()=>addAction(id)}>
-                    {!inCart?(<><div>Add To cart</div><AddShoppingCart /></>):<><div>Added To Cart</div><RiLuggageCartFill size={25}/></>}
-                  </button>
+                
+  
             </div>
             <Toaster
                 toastOptions={{
