@@ -9,7 +9,7 @@ const Slider = () => {
         <Carousel>
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            className="d-block w-100 h-50"
             src={image1}
             alt="First slide"
           />
