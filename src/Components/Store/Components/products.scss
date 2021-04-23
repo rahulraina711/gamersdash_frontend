@@ -3,9 +3,13 @@
     flex-direction: column;
     background: white;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 3px 0 3px 0;
     width: 95%;
+    box-shadow: -9px 9px 8px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -9px 9px 8px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: -9px 9px 8px 1px rgba(0,0,0,0.75);
+
     .prod-image{
         
         .fit-pic{
@@ -20,6 +24,9 @@
             color: black;
             padding: 5px;
             font-size: 1rem;
+            &:hover{
+                cursor: pointer;
+            }
         }
 
     }
@@ -44,5 +51,11 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+.back-btn{
+    &:hover{
+        cursor: pointer;
     }
 }

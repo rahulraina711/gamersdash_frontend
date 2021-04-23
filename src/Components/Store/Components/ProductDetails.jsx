@@ -8,7 +8,7 @@ import {RiLuggageCartFill} from 'react-icons/ri';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 
-export default function ProductCard({id , image , name , description , price , countInStock}){
+export default function ProductDetail({id , image , name , description , price , countInStock}){
 
   const [inCart, setInCart] = useState(false)
   const userCart = useSelector(state => state.cart.cart);
@@ -70,7 +70,7 @@ export default function ProductCard({id , image , name , description , price , c
                 <div className="price">Price: ₹{price}</div>
                 <div className="in-stock">In Stock : {countInStock}</div>
                   <button className="a2c" onClick={()=>addAction(id)}>
-                    {!inCart?<AddShoppingCart />:<RiLuggageCartFill size={25}/>}
+                    {!inCart?(<><div>Add To cart</div><AddShoppingCart /></>):<><div>Added To Cart</div><RiLuggageCartFill size={25}/></>}
                   </button>
             </div>
             <Toaster

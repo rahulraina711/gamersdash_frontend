@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {userAdded, userRemoved} from './global_store/userReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import Slider from './Components/Slider/Slider';
 
 
 
@@ -82,17 +83,25 @@ export default function App(){
 return(
     
     <div className="main-screen">
-        {loading && <CircularProgress color="secondary" />}
-        {user.auth===false && <div className="signing">
-            <GoogleLogin
-                clientId={secret_ID}
-                buttonText="Hop In"
-                onSuccess={googleSuccess}
-                onFailure={googleFailure}
-                cookiePolicy={'single_host_origin'}
-                />
-        </div>}
-        {user.id? <h1>hello</h1>:<h1>you are not logged in</h1>}
+        <div className="user">
+            {loading && <CircularProgress color="secondary" />}
+            <h1>Gamer's Dash</h1>
+            <h3>A one-stop web App for the Indian Gaming Community</h3>
+            <h4>Click on the "Hop In" button to enter the whole new experience</h4>
+            {user.auth===false && <div className="signing">
+                <GoogleLogin
+                    clientId={secret_ID}
+                    buttonText="Hop In"
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+                    cookiePolicy={'single_host_origin'}
+                    />
+            </div>}
+            <div className="advert-c">
+                <Slider />
+            </div>
+        </div>
+        
     </div>
     )
 }

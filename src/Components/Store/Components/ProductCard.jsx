@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {RiLuggageCartFill} from 'react-icons/ri';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import ProductDetail from './ProductDetails';
+import {Modal} from '@material-ui/core';
 
 export default function ProductCard({id , image , name , description , price , countInStock}){
 
@@ -17,7 +19,15 @@ export default function ProductCard({id , image , name , description , price , c
     headers:{
       Authorization: localStorage.getItem('auth_token')
     }
-  })
+  });
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+      setOpen(true);
+    };
+
+  const handleClose = () => {
+      setOpen(false);
+    };
 
   useEffect(()=>{
     if(userCart.includes(id)){
@@ -30,6 +40,14 @@ export default function ProductCard({id , image , name , description , price , c
   },[]);
 
   const dispatch = useDispatch();
+
+  const body = (
+
+    <div className="modal-r-r">
+        <button className="back-btn" onClick={handleClose} style={{padding:"10px",background:"yellow"}}>Back</button>
+        <ProductDetail id={id}  image={image}  name={name}  description={description}  price={price}  countInStock={countInStock} />
+    </div>
+    )
 
 
   async function addAction(id){
@@ -51,7 +69,7 @@ export default function ProductCard({id , image , name , description , price , c
                 <img className="fit-pic" src={domain+"/"+image} alt="image_prod" />
             </div>
             <div className="prod-details">
-                <div className="prod-name">{name.slice(0,45)}...</div>
+                <div className="prod-name" onClick={handleOpen}>{name.slice(0,45)}...</div>
             </div>
             <div className="cart-fxns">
                 <div className="price">Price: ₹{price}</div>
@@ -74,6 +92,15 @@ export default function ProductCard({id , image , name , description , price , c
                   },
                 }}
               />
+              <Modal
+                id="game-modal-id"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                >
+                {body}
+            </Modal>
         </div>
     )
 }

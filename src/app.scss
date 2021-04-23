@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
+
 *{
     font-family: 'Roboto', sans-serif;
 }
@@ -8,20 +11,48 @@ body{
     background-attachment: fixed;
 }
 .main-screen{
-    width: 90%;
     display: flex;
-    flex-direction: column;
+    
     align-items: center;
     justify-content: center;
     padding: 20px;
     background: transparent;
 
     .user{
-        background: transparent;
+        background: rgba(255, 255, 255, 0.212);
+        border: 2px solid yellow;
+        padding: 5px 60px 5px 60px;
+        border-radius: 10px;
         margin-top: 25px;
         display: flex;
+        align-items: center;
         flex-direction: column;
-
+        h1{
+          font-family: 'Coda Caption', sans-serif;
+          color: yellow;
+        }
+        h3{
+          font-family: 'Roboto Mono', monospace;
+          color: yellow;
+          padding: 10px;
+        }
+      .advert-c{
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.432);
+        margin-top: 30px;
+        width: 900px;
+        h3{
+          padding: 5px;
+          background: black;
+          border-radius: 10px;
+        }
+        p{
+          background: black;
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
     }
 }
 ::-webkit-scrollbar {

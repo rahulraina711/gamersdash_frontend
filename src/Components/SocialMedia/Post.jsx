@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
 import { useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 
 // {post.isEvent==="true" && <Button className="isEvent" variant="contained" color="primary" target="_blank" rel="noopener norefrence" href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=909752796516-tai4asagcrndntlnrr9t1vutbrnak2fp.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground" >Add Reminder<EventOutlined /></Button>}
 
@@ -115,6 +116,13 @@ export default function Post ({ post }) {
     }
     let d = new Date(post.createdAt)
 
+    async function flagPost(id){
+        const flagRes = await axios.post(domain+"/flag/"+id);
+        toast.success(flagRes.data.message);
+        handleClose();
+
+    }
+
     return (
         <div key={post._id} className="landing-post">
             <div className="more-options">
@@ -129,7 +137,7 @@ export default function Post ({ post }) {
                         keepMounted
                         open={Boolean(anchorEl)}
                         onClose={handleClose}>
-                          <MenuItem on>Flag as fake / inappropriate</MenuItem>
+                          <MenuItem onClick={()=>flagPost(post._id)}>Flag as fake / inappropriate</MenuItem>
                           {post.userId===authedUser.id&&(<MenuItem onClick={()=>{deletePost(post._id);handleClose()}}>Delete</MenuItem>)}
                     </Menu>
                 </div>
@@ -164,6 +172,20 @@ export default function Post ({ post }) {
                     <Button color="secondary" variant="contained" onClick={commentPost}>Post</Button>
                 </div>
             </div>
+            <Toaster
+                toastOptions={{
+                  success: {
+                    style: {
+                      background: 'green',
+                    },
+                  },
+                  error: {
+                    style: {
+                      background: 'yellow',
+                    },
+                  },
+                }}
+              />
         </div>
     )
 }
