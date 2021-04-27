@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Gamer's Dash",
+  "name": "One-stop web app for gamers",
   "icons": [
     {
       "src": "favicon.ico",
